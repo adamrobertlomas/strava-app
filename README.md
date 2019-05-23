@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Basic typescript react application that I use as a playground to branch off of
+
 
 ## Available Scripts
 
