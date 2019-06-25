@@ -6,36 +6,28 @@ class Summary extends React.Component<{}, { summary: any }> {
     super(props);
 
     this.state = {
-      summary: ''
+      summary: ""
     };
   }
 
   componentDidMount() {
-
     const athleteId: string = "";
+    const accessToken: string = "";
 
-    const axiosConfig = {
-      baseURL: 'https://www.strava.com/api/v3/',
-      // headers: {
-      //   'Authorization': "Bearer #{}"
-      // }
-    };
-
-    let result: any = "";
-
-    axios.get("/athletes/" + athleteId + "?access_token=", axiosConfig)
-      .then(function (response) {
-
-        result = response.data;
-
+    axios
+      .get(
+        "https://www.strava.com/api/v3/athletes/" +
+          athleteId +
+          "?access_token=" +
+          accessToken
+      )
+      .then(function(response) {
+        console.log(response);
+        console.log(response.data);
       })
-      .catch(function (error) {
-        result = error;
-      })
-
-
-      alert(result);
-      this.setState({ summary: result });
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   render() {
