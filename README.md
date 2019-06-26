@@ -1,5 +1,5 @@
-## Playing around with the Strava api
+# Playing around with the Strava api
 
-# To Do
+## To Do
 
-- Add .env file to store access variables
+- Display returned data in a nice format.

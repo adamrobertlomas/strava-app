@@ -11,8 +11,9 @@ class Summary extends React.Component<{}, { summary: any }> {
   }
 
   componentDidMount() {
-    const athleteId: string = "";
-    const accessToken: string = "";
+    const self = this;
+    const athleteId: any = process.env.REACT_APP_ATHLETE_ID;
+    const accessToken: any = process.env.REACT_APP_ACCESS_TOKEN;
 
     axios
       .get(
@@ -22,8 +23,8 @@ class Summary extends React.Component<{}, { summary: any }> {
           accessToken
       )
       .then(function(response) {
-        console.log(response);
-        console.log(response.data);
+        const json: string = JSON.stringify(response);
+        self.setState({ summary: json });
       })
       .catch(function(error) {
         console.log(error);
