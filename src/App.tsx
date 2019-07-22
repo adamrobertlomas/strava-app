@@ -1,5 +1,5 @@
 import React from "react";
-import Summary from "./Summary";
+import Summary from "./components/Summary";
 
 const App: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const App: React.FC = () => {
       <div>Strava Summary</div>
       <nav />
       <main>
-          <Summary />
+        <Summary />
       </main>
       <footer />
     </>
