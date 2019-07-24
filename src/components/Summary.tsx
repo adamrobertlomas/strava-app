@@ -1,6 +1,7 @@
+import { getAthlete } from "../Api/GetAthlete";
+import { IAthlete } from "../Types/IAthlete";
+import AthleteInfo from "./AthleteInfo";
 import React from "react";
-import { getAthlete } from "../api/getAthlete";
-import { IAthlete } from "../types/IAthlete";
 
 interface ISummaryProps {
   error: string;
@@ -18,7 +19,7 @@ class Summary extends React.Component<{}, ISummaryProps> {
   }
 
   async componentDidMount() {
-    const response = await getAthlete("5640776");
+    const response = await getAthlete();
 
     this.setState({
       error: response.error,
@@ -30,14 +31,7 @@ class Summary extends React.Component<{}, ISummaryProps> {
     return (
       <>
         {this.state.athlete ? (
-          <div>
-            <ul>
-              <li>{this.state.athlete.username}</li>
-              <li>{this.state.athlete.id}</li>
-              <li>{this.state.athlete.firstname}</li>
-              <li>{this.state.athlete.lastname}</li>
-            </ul>
-          </div>
+          <AthleteInfo athlete={this.state.athlete} />
         ) : (
           <div>{this.state.error}</div>
         )}

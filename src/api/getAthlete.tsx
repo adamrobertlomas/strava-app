@@ -1,18 +1,19 @@
 import axios from "axios";
-import { IAthlete } from "../types/IAthlete";
-import { IResponse } from "../types/IResponse";
+import { IAthlete } from "../Types/IAthlete";
+import { IResponse } from "../Types/IResponse";
 
-// const athleteId: any = process.env.REACT_APP_ATHLETE_ID;
+const athleteId: any = process.env.REACT_APP_ATHLETE_ID;
 const accessToken: any = process.env.REACT_APP_ACCESS_TOKEN;
 
-export const getAthlete = async (athleteId: string): Promise<IResponse> => {
+export const getAthlete = async (): Promise<IResponse> => {
+  let config = {
+    headers: {
+      Authorization: "Bearer " + accessToken
+    }
+  };
+
   return await axios
-    .get(
-      "https://www.strava.com/api/v3/athletes/" +
-        athleteId +
-        "?access_token=" +
-        accessToken
-    )
+    .get(`https://www.strava.com/api/v3/athletes/${athleteId}/stats`, config)
     .then(function(response) {
       const athlete: IAthlete = {
         id: response.data.id,
@@ -30,7 +31,7 @@ export const getAthlete = async (athleteId: string): Promise<IResponse> => {
     })
     .catch(function(error) {
       const resp: IResponse = {
-        error: error, // "Sorry, an error has occured.",
+        error: String(error),
         athlete: undefined
       };
 

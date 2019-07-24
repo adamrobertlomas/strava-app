@@ -1,5 +1,5 @@
 import React from "react";
-import Summary from "./components/Summary";
+import Summary from "./Components/Summary";
 
 const App: React.FC = () => {
   return (
