@@ -1,5 +1,6 @@
 import React from "react";
-import Summary from "./Components/Summary";
+import AthleteSummary from "./Components/AthleteSummary";
+import Login from "./Components/Login";
 
 const App: React.FC = () => {
   return (
@@ -7,7 +8,8 @@ const App: React.FC = () => {
       <div>Strava Summary</div>
       <nav />
       <main>
-        <Summary />
+        <Login />
+        <AthleteSummary />
       </main>
       <footer />
     </>

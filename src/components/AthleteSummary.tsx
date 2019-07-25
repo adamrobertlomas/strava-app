@@ -8,7 +8,7 @@ interface ISummaryProps {
   athlete?: IAthlete;
 }
 
-class Summary extends React.Component<{}, ISummaryProps> {
+class AthleteSummary extends React.Component<{}, ISummaryProps> {
   constructor(props: any) {
     super(props);
 
@@ -40,4 +40,4 @@ class Summary extends React.Component<{}, ISummaryProps> {
   }
 }
 
-export default Summary;
+export default AthleteSummary;
