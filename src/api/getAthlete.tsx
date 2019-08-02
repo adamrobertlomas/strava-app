@@ -1,37 +1,26 @@
-import axios from "axios";
 import { IAthlete } from "../Types/IAthlete";
-import { IResponse } from "../Types/IResponse";
+import { GetResponse } from "./GetResponse";
 
-export const GetAthlete = async (accessToken: string): Promise<IResponse> => {
-  let config = {
-    headers: {
-      Authorization: "Bearer " + accessToken
-    }
+export const GetAthlete = async (accessToken: string): Promise<IAthlete> => {
+  const url = "/athlete";
+  const response = await GetResponse(accessToken, url);
+  let athlete: IAthlete = {
+    id: -1,
+    username: "",
+    firstname: "",
+    lastname: ""
   };
 
-  return await axios
-    .get(`https://www.strava.com/api/v3/athlete`, config)
-    .then(function(response) {
-      const athlete: IAthlete = {
-        id: response.data.id,
-        username: response.data.username,
-        firstname: response.data.firstname,
-        lastname: response.data.lastname
-      };
+  if (response.data) {
+    athlete = {
+      id: response.data.id,
+      username: response.data.username,
+      firstname: response.data.firstname,
+      lastname: response.data.lastname
+    };
+  } else {
+    console.log(response.error);
+  }
 
-      const resp: IResponse = {
-        error: "",
-        athlete: athlete
-      };
-
-      return resp;
-    })
-    .catch(function(error) {
-      const resp: IResponse = {
-        error: String(error),
-        athlete: undefined
-      };
-
-      return resp;
-    });
+  return athlete;
 };

@@ -8,7 +8,7 @@ interface IAthleteSummaryProps {
 }
 
 interface IAthleteSummaryState {
-  error: string;
+  error?: string;
   athlete?: IAthlete;
 }
 
@@ -27,11 +27,20 @@ class AthleteSummary extends React.Component<
 
   async componentDidUpdate(prevProps: IAthleteSummaryProps) {
     if (prevProps.accessToken !== this.props.accessToken) {
-      const response = await GetAthlete(this.props.accessToken);
+      const athlete = await GetAthlete(this.props.accessToken);
+      let errorMessage = undefined;
+
+      if (athlete === undefined) {
+        this.setState({
+          error:
+            "Sorry, there was an error getting the athlete. Please check the console for more information.",
+          athlete: undefined
+        });
+      }
 
       this.setState({
-        error: response.error,
-        athlete: response.athlete
+        error: errorMessage,
+        athlete: athlete
       });
     }
   }
