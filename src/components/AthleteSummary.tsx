@@ -1,14 +1,21 @@
-import { getAthlete } from "../Api/GetAthlete";
+import { GetAthlete } from "../Api/GetAthlete";
 import { IAthlete } from "../Types/IAthlete";
 import AthleteInfo from "./AthleteInfo";
 import React from "react";
 
-interface ISummaryProps {
+interface IAthleteSummaryProps {
+  accessToken: string;
+}
+
+interface IAthleteSummaryState {
   error: string;
   athlete?: IAthlete;
 }
 
-class AthleteSummary extends React.Component<{}, ISummaryProps> {
+class AthleteSummary extends React.Component<
+  IAthleteSummaryProps,
+  IAthleteSummaryState
+> {
   constructor(props: any) {
     super(props);
 
@@ -18,13 +25,15 @@ class AthleteSummary extends React.Component<{}, ISummaryProps> {
     };
   }
 
-  async componentDidMount() {
-    const response = await getAthlete();
+  async componentDidUpdate(prevProps: IAthleteSummaryProps) {
+    if (prevProps.accessToken !== this.props.accessToken) {
+      const response = await GetAthlete(this.props.accessToken);
 
-    this.setState({
-      error: response.error,
-      athlete: response.athlete
-    });
+      this.setState({
+        error: response.error,
+        athlete: response.athlete
+      });
+    }
   }
 
   render() {

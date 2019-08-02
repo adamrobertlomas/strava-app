@@ -1,19 +1,8 @@
 import React from "react";
-import AthleteSummary from "./Components/AthleteSummary";
-import Login from "./Components/Login";
+import Main from "./Components/Main";
 
 const App: React.FC = () => {
-  return (
-    <>
-      <div>Strava Summary</div>
-      <nav />
-      <main>
-        <Login />
-        <AthleteSummary />
-      </main>
-      <footer />
-    </>
-  );
+  return <Main />;
 };
 
 export default App;

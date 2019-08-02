@@ -2,10 +2,7 @@ import axios from "axios";
 import { IAthlete } from "../Types/IAthlete";
 import { IResponse } from "../Types/IResponse";
 
-const athleteId: any = process.env.REACT_APP_ATHLETE_ID;
-const accessToken: any = process.env.REACT_APP_ACCESS_TOKEN;
-
-export const getAthlete = async (): Promise<IResponse> => {
+export const GetAthlete = async (accessToken: string): Promise<IResponse> => {
   let config = {
     headers: {
       Authorization: "Bearer " + accessToken
@@ -13,7 +10,7 @@ export const getAthlete = async (): Promise<IResponse> => {
   };
 
   return await axios
-    .get(`https://www.strava.com/api/v3/athletes/${athleteId}/stats`, config)
+    .get(`https://www.strava.com/api/v3/athlete`, config)
     .then(function(response) {
       const athlete: IAthlete = {
         id: response.data.id,
