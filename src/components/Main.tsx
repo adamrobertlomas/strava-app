@@ -9,7 +9,6 @@ class Login extends React.Component {
         <nav />
         <main>
           <Route exact path="/" render={props => <Home {...props} />} />
-          <Route path="/authorize" />
         </main>
         <footer />
       </Router>
