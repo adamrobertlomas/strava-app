@@ -1,23 +1,21 @@
 import React from "react";
 import Api from "../utils/Api";
+import "./Profile.css";
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { profileJson: "" };
-
-    this.handleClick = this.handleClick.bind(this);
+    this.state = { profile: "" };
   }
 
-  // componentDidMount() {}
-
-  handleClick() {
-    const response = Api.Get();
+  async componentDidMount() {
+    let response = await Api.Get();
+    console.log(response);
 
     if (response.success === true) {
       this.setState({
-        profileJson: response.json,
+        profile: response.json,
       });
     }
   }
@@ -25,8 +23,16 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
-        <p>{this.state.profileJson}</p>
-        <button onClick={this.handleClick}>Click me</button>
+        <img src={this.state.profile.profile} />
+        <p>
+          {this.state.profile.firstname} {this.state.profile.lastname}
+          <br />
+          {this.state.profile.city}
+          <br />
+          {this.state.profile.state}
+          <br />
+          {this.state.profile.country}
+        </p>
       </div>
     );
   }

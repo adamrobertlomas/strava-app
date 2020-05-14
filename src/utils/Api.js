@@ -10,26 +10,24 @@ const Api = {
       headers: { Authorization: `Bearer ${accessToken}` },
     };
 
+    let result;
+
     await axios
       .get("https://www.strava.com/api/v3/athlete", config)
       .then(function (response) {
-        const apiObject = {
+        result = {
           success: true,
-          json: response,
+          json: response.data,
         };
-
-        console.log(apiObject);
-        return apiObject;
       })
       .catch(function (error) {
-        const apiObject = {
+        result = {
           success: false,
           json: error,
         };
-
-        console.log(apiObject);
-        return apiObject;
       });
+
+    return result;
   },
 };
 
