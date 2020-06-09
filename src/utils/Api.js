@@ -1,34 +1,43 @@
 import axios from "axios";
 import Helpers from "../utils/Helpers";
 
+const apiUri = "https://www.strava.com/api/v3";
+
 const Api = {
-  Get: async function () {
-    checkToken();
-    const accessToken = Helpers.GetCookie("strava_access_token");
-
-    const config = {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    };
-
-    let result;
-
-    await axios
-      .get("https://www.strava.com/api/v3/athlete", config)
-      .then(function (response) {
-        result = {
-          success: true,
-          json: response.data,
-        };
-      })
-      .catch(function (error) {
-        result = {
-          success: false,
-          json: error,
-        };
-      });
-
-    return result;
+  GetProfile: async function () {
+    return await get(`${apiUri}/athlete`);
   },
+  GetActivities: async function () {
+    return await get(`${apiUri}/athlete/activities`);
+  },
+};
+
+const get = async (uri) => {
+  checkToken();
+  const accessToken = Helpers.GetCookie("strava_access_token");
+
+  const config = {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  };
+
+  let result;
+
+  await axios
+    .get(uri, config)
+    .then(function (response) {
+      result = {
+        success: true,
+        json: response.data,
+      };
+    })
+    .catch(function (error) {
+      result = {
+        success: false,
+        json: error,
+      };
+    });
+
+  return result;
 };
 
 function checkToken() {

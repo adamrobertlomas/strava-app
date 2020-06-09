@@ -10,8 +10,7 @@ class Profile extends React.Component {
   }
 
   async componentDidMount() {
-    let response = await Api.Get();
-    console.log(response);
+    let response = await Api.GetProfile();
 
     if (response.success === true) {
       this.setState({
@@ -23,7 +22,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile">
-        <img src={this.state.profile.profile} />
+        <img src={this.state.profile.profile} alt={this.state.profile.firstname} />
         <p>
           {this.state.profile.firstname} {this.state.profile.lastname}
           <br />

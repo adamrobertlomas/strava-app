@@ -2,7 +2,8 @@ import React from "react";
 import { Route } from "react-router";
 import Authenticate from "./components/Authenticate";
 import Header from "./components/Header";
-import Profile from "./components/Profile";
+// import Profile from "./components/Profile";
+import Activities from "./components/Activities";
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
         <Authenticate />
       </Route>
       <Route path="/" exact={true}>
-        <Profile />
+        {/* <Profile /> */}
+        <Activities />
       </Route>
     </div>
   );
