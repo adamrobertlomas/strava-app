@@ -1,5 +1,5 @@
 import axios from "axios";
-import Helpers from "../utils/Helpers";
+import Helpers from "./Helpers";
 
 const apiUri = "https://www.strava.com/api/v3";
 
@@ -9,6 +9,9 @@ const Api = {
   },
   GetActivities: async function () {
     return await get(`${apiUri}/athlete/activities`);
+  },
+  GetActivity: async function (activityId) {
+    return await get(`${apiUri}/activities/${activityId}`);
   },
 };
 

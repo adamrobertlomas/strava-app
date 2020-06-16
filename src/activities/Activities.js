@@ -21,6 +21,7 @@ class Activities extends React.Component {
   render() {
     return (
       <div className="activities">
+        <h2>Activities</h2>
         {this.state.activityList.map((activity) => (
           <Activity activity={activity} key={activity.id} />
         ))}

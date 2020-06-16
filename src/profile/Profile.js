@@ -1,6 +1,6 @@
 import React from "react";
 import Api from "../utils/Api";
-import "./Profile.css";
+import "./Profile.scss";
 
 class Profile extends React.Component {
   constructor(props) {
