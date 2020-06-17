@@ -1,6 +1,7 @@
 import React from "react";
 import "./Activity.scss";
 import { Link } from "react-router-dom";
+import Format from "../utils/Format";
 
 function Activity(props) {
   return (
@@ -12,36 +13,12 @@ function Activity(props) {
         <span className="type">{props.activity.type}</span>
       </div>
       <ul>
-        <li>Total distance: {displayAsKm(props.activity.distance)}</li>
-        <li>Date & time: {formatDateTime(props.activity.start_date)}</li>
-        <li>Elapsed time: {formatElapsedTime(props.activity.elapsed_time)}</li>
+        <li>Total distance: {Format.FormatAsKm(props.activity.distance)}</li>
+        <li>Date & time: {Format.FormatDateTime(props.activity.start_date)}</li>
+        <li>Elapsed time: {Format.FormatElapsedTime(props.activity.elapsed_time)}</li>
       </ul>
     </div>
   );
-}
-
-function displayAsKm(metres) {
-  const km = metres / 1000;
-  return km.toFixed(1) + " km";
-}
-
-function formatDateTime(datetime) {
-  const date = new Date(datetime);
-
-  const day = ("0" + date.getDate()).slice(-2);
-  const month = ("0" + (date.getMonth() + 1)).slice(-2);
-  const hours = ("0" + date.getHours()).slice(-2);
-  const minutes = ("0" + date.getMinutes()).slice(-2);
-
-  return `${day}/${month}/${date.getFullYear()} ${hours}:${minutes}`;
-}
-
-function formatElapsedTime(elapsedTime) {
-  var hours = ("0" + Math.floor(elapsedTime / 3600)).slice(-2);
-  var minutes = ("0" + Math.floor((elapsedTime % 3600) / 60)).slice(-2);
-  var seconds = ("0" + Math.floor((elapsedTime % 3600) % 60)).slice(-2);
-
-  return `${hours}:${minutes}:${seconds}`;
 }
 
 export default Activity;
